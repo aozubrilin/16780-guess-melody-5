@@ -8,6 +8,7 @@ import AuthScreen from "../auth-screen/auth-screen";
 import GameOverScreen from "../game-over-screen/game-over-screen";
 import WinScreen from "../win-screen/win-screen";
 
+
 const App = (props) => {
   const {errorsCount} = props;
 
