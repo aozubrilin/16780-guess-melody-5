@@ -2,9 +2,10 @@ import React from "react";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import {ActionCreator} from "../../store/action";
+import {Link} from "react-router-dom";
 
 const WinScreen = (props) => {
-  const {questionsCount, mistakesCount, onReplayButtonClick, resetGame} = props;
+  const {questionsCount, mistakesCount, resetGame} = props;
   const correctlyQuestionsCount = questionsCount - mistakesCount;
   return (
     <section className="result">
@@ -13,16 +14,17 @@ const WinScreen = (props) => {
       </div>
       <h2 className="result__title">Вы настоящий меломан!</h2>
       <p className="result__total">Вы ответили правильно на {correctlyQuestionsCount} вопросов и совершили {mistakesCount} ошибки</p>
-      <button
-        onClick={() => {
-          resetGame();
-          onReplayButtonClick();
-        }}
-        className="replay"
-        type="button"
-      >
+      <Link to='/game'>
+        <button
+          onClick={() => {
+            resetGame();
+          }}
+          className="replay"
+          type="button"
+        >
         Сыграть ещё раз
-      </button>
+        </button>
+      </Link>
     </section>
   );
 };
