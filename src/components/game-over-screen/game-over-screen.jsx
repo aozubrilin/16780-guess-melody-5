@@ -28,7 +28,6 @@ const GameOverScreen = ({resetGame}) => {
 };
 
 GameOverScreen.propTypes = {
-  onReplayButtonClick: PropTypes.func.isRequired,
   resetGame: PropTypes.func.isRequired,
 };
 
