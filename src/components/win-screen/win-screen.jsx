@@ -1,11 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
-import {ActionCreator} from "../../store/action";
+import {resetGame} from "../../store/action";
 import {Link} from "react-router-dom";
 
 const WinScreen = (props) => {
-  const {questionsCount, mistakesCount, resetGame} = props;
+  const {questionsCount, mistakesCount, resetGameAction} = props;
   const correctlyQuestionsCount = questionsCount - mistakesCount;
   return (
     <section className="result">
@@ -17,7 +17,7 @@ const WinScreen = (props) => {
       <Link to='/game'>
         <button
           onClick={() => {
-            resetGame();
+            resetGameAction();
           }}
           className="replay"
           type="button"
@@ -32,7 +32,7 @@ const WinScreen = (props) => {
 WinScreen.propTypes = {
   questionsCount: PropTypes.number.isRequired,
   mistakesCount: PropTypes.number.isRequired,
-  resetGame: PropTypes.func.isRequired,
+  resetGameAction: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
@@ -41,8 +41,8 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  resetGame() {
-    dispatch(ActionCreator.resetGame());
+  resetGameAction() {
+    dispatch(resetGame());
   },
 });
 
