@@ -35,9 +35,9 @@ WinScreen.propTypes = {
   resetGameAction: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = ({GAME}) => ({
-  questionsCount: GAME.step,
-  mistakesCount: GAME.mistakes,
+const mapStateToProps = ({game}) => ({
+  questionsCount: game.step,
+  mistakesCount: game.mistakes,
 });
 
 const mapDispatchToProps = (dispatch) => ({

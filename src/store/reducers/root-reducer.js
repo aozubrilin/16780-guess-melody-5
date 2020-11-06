@@ -4,9 +4,9 @@ import {gameData} from "./game-data/game-data";
 import {user} from "./user/user";
 
 export const NameSpace = {
-  DATA: `DATA`,
-  GAME: `GAME`,
-  USER: `USER`,
+  DATA: `data`,
+  GAME: `game`,
+  USER: `user`,
 };
 
 export default combineReducers({
