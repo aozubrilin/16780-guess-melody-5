@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import {resetGame} from "../../store/action";
 import {Link} from "react-router-dom";
+import {AppRoute} from "../../const";
 
 const WinScreen = (props) => {
   const {questionsCount, mistakesCount, resetGameAction} = props;
@@ -14,7 +15,7 @@ const WinScreen = (props) => {
       </div>
       <h2 className="result__title">Вы настоящий меломан!</h2>
       <p className="result__total">Вы ответили правильно на {correctlyQuestionsCount} вопросов и совершили {mistakesCount} ошибки</p>
-      <Link to='/game'>
+      <Link to={AppRoute.GAME}>
         <button
           onClick={() => {
             resetGameAction();

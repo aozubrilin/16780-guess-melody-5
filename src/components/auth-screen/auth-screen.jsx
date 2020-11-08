@@ -3,6 +3,9 @@ import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import {login} from "../../store/api-actions";
 import {Link} from "react-router-dom";
+import {AppRoute} from "../../const";
+import {resetGame} from "../../store/action";
+
 
 class AuthScreen extends PureComponent {
   constructor(props) {
@@ -26,7 +29,7 @@ class AuthScreen extends PureComponent {
   }
 
   render() {
-
+    const {resetGameAction} = this.props;
     return (
       <section className="login">
         <div className="login__logo">
@@ -62,8 +65,12 @@ class AuthScreen extends PureComponent {
           </p>
           <button className="login__button button" type="submit">Войти</button>
         </form>
-        <Link to='/game'>
+        <Link to={AppRoute.GAME}>
           <button
+            onClick={() => {
+              resetGameAction();
+            }}
+
             className="replay"
             type="button"
           >
@@ -77,13 +84,18 @@ class AuthScreen extends PureComponent {
 
 AuthScreen.propTypes = {
   onSubmit: PropTypes.func.isRequired,
+  resetGameAction: PropTypes.func.isRequired,
 };
 
 
 const mapDispatchToProps = (dispatch) => ({
   onSubmit(authData) {
     dispatch(login(authData));
-  }
+  },
+
+  resetGameAction() {
+    dispatch(resetGame());
+  },
 });
 
 export {AuthScreen};

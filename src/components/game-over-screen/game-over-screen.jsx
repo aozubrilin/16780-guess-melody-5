@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import {resetGame} from "../../store/action";
 import {Link} from "react-router-dom";
+import {AppRoute} from "../../const";
 
 const GameOverScreen = ({resetGameAction}) => {
   return (
@@ -12,7 +13,7 @@ const GameOverScreen = ({resetGameAction}) => {
       </div>
       <h2 className="result__title">Какая жалость!</h2>
       <p className="result__total result__total--fail">У вас закончились все попытки. Ничего, повезёт в следующий раз!</p>
-      <Link to='/game'>
+      <Link to={AppRoute.GAME}>
         <button
           onClick={() => {
             resetGameAction();
