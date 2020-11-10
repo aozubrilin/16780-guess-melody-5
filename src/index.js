@@ -19,17 +19,20 @@ const api = createAPI(
 const store = createStore(
     rootReducer,
     composeWithDevTools(
-        applyMiddleware(thunk.withExtraArgument(api)),
-        applyMiddleware(redirect)
+        applyMiddleware(thunk.withExtraArgument(api), redirect)
     )
 );
 
-store.dispatch(fetchQuestionList());
 store.dispatch(checkAuth());
 
-ReactDOM.render(
-    <Provider store={store}>
-      <App />
-    </Provider>,
-    document.querySelector(`#root`)
-);
+Promise.all([
+  store.dispatch(fetchQuestionList())
+])
+.then(() => {
+  ReactDOM.render(
+      <Provider store={store}>
+        <App />
+      </Provider>,
+      document.querySelector(`#root`)
+  );
+});

@@ -1,5 +1,5 @@
 import React from "react";
-import {Switch, Route, Router as BrowserRouter} from "react-router-dom";
+import {Switch, Route, Router} from "react-router-dom";
 import WelcomeScreen from "../welcome-screen/welcome-screen";
 import AuthScreen from "../auth-screen/auth-screen";
 import GameOverScreen from "../game-over-screen/game-over-screen";
@@ -11,7 +11,7 @@ import {MAX_MISTAKE_COUNT, AppRoute} from "../../const";
 
 const App = () => {
   return (
-    <BrowserRouter history={browserHistory}>
+    <Router history={browserHistory}>
       <Switch>
         <Route exact path={AppRoute.ROOT}>
           <WelcomeScreen
@@ -24,11 +24,9 @@ const App = () => {
         <PrivateRoute
           exact
           path={AppRoute.RESULT}
-          render={({history}) => {
+          render={() => {
             return (
-              <WinScreen
-                onReplayButtonClick={() => history.push(AppRoute.GAME)}
-              />
+              <WinScreen/>
             );
           }}
         />
@@ -41,7 +39,7 @@ const App = () => {
           />
         </Route>
       </Switch>
-    </BrowserRouter>
+    </Router>
   );
 };
 
