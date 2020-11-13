@@ -12,11 +12,7 @@ const PrivateRoute = (props) => {
     <Route
       path={path}
       exact={exact}
-      render={(routeProps) => {
-        return (
-          render(routeProps)
-        );
-      }}
+      render={render}
     /> : <Redirect to={AppRoute.LOGIN} />;
 };
 

@@ -2,9 +2,10 @@ import React, {PureComponent, createRef} from "react";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import {login} from "../../store/api-actions";
-import {Link} from "react-router-dom";
+import {Link, Redirect} from "react-router-dom";
 import {AppRoute} from "../../const";
 import {resetGame} from "../../store/action";
+import {AuthorizationStatus} from "../../const";
 
 
 class AuthScreen extends PureComponent {
@@ -29,7 +30,11 @@ class AuthScreen extends PureComponent {
   }
 
   render() {
-    const {resetGameAction} = this.props;
+    const {resetGameAction, authorizationStatus} = this.props;
+
+    if (authorizationStatus === AuthorizationStatus.AUTH) {
+      return <Redirect to={AppRoute.RESULT} />;
+    }
     return (
       <section className="login">
         <div className="login__logo">
@@ -85,7 +90,12 @@ class AuthScreen extends PureComponent {
 AuthScreen.propTypes = {
   onSubmit: PropTypes.func.isRequired,
   resetGameAction: PropTypes.func.isRequired,
+  authorizationStatus: PropTypes.string.isRequired,
 };
+
+const mapStateToProps = (state) => ({
+  authorizationStatus: state.user.authorizationStatus,
+});
 
 
 const mapDispatchToProps = (dispatch) => ({
@@ -99,4 +109,4 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 export {AuthScreen};
-export default connect(null, mapDispatchToProps)(AuthScreen);
+export default connect(mapStateToProps, mapDispatchToProps)(AuthScreen);
